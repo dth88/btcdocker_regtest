@@ -1,0 +1,39 @@
+version: '3'
+services:
+  node1:
+    build: .
+    ports:
+            - "127.0.0.1:19001:10340"
+    cap_add:
+      - ALL
+    command: bitcoind -regtest -server -addnode=10.7.0.12:12345 -rpcuser=rpc -rpcpassword=x -rpcallowip=0.0.0.0/0 -rpcbind=0.0.0.0 -rpcport=10340  --datadir=/root/bitcoind-simnet/ -port=12345 -deprecatedrpc=generate
+    networks:
+      vpcbr:
+        ipv4_address: 10.7.0.11
+  node2:
+    build: .
+    ports:
+            - "127.0.0.1:19002:10340"
+    cap_add:
+      - ALL
+    command: bitcoind -regtest -server -addnode=10.7.0.11:12345 -rpcuser=rpc -rpcpassword=x -rpcallowip=0.0.0.0/0 -rpcbind=0.0.0.0 -rpcport=10340  --datadir=/root/bitcoind-simnet/ -port=12345 -deprecatedrpc=generate
+    networks:
+      vpcbr:
+        ipv4_address: 10.7.0.12
+  flask:
+    build: flask
+    ports:
+            - "127.0.0.1:19000:19000"
+    cap_add:
+      - ALL
+    command: /app/app.py flask run
+    networks:
+      vpcbr:
+        ipv4_address: 10.7.0.13
+
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.7.0.0/16
