@@ -7,6 +7,7 @@ RUN apt-get update
 RUN apt-get install --yes bitcoind make curl net-tools
 
 WORKDIR /src/bitcoin
-RUN mkdir -p /root/bitcoind-simnet/
+RUN mkdir -p /root/bitcoind-simnet/regtest
+COPY bitcoind-simnet/regtest /root/bitcoind-simnet/regtest
 
 EXPOSE 10340
