@@ -8,6 +8,7 @@ docker-compose up
 after completion of above steps you will have two bitcoind nodes ready for rpc calls on localhost:19001 and 19002
 and flask app on localhost:19000 which will continuously call generate command on both nodes to keep chain goin
 
+## env variable not required from now on since you can use estimatesmartfee right away
 There's estimatesmartfee mode where flaskapp starts generating a high amount of transactions between nodes, for it to work you should set environment variable $ESMART_FEE=1
 
 
