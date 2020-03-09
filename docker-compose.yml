@@ -6,7 +6,7 @@ services:
             - "127.0.0.1:19001:10340"
     cap_add:
       - ALL
-    command: bitcoind -regtest -server -addnode=10.7.0.12:12345 -rpcuser=rpc -rpcpassword=x -rpcallowip=0.0.0.0/0 -rpcbind=0.0.0.0 -rpcport=10340  --datadir=/root/bitcoind-simnet/ -port=12345 -deprecatedrpc=generate
+    command: bitcoind -regtest -server -addnode=10.7.0.12:12345 -txindex=1 -rpcuser=rpc -rpcpassword=x -rpcallowip=0.0.0.0/0 -rpcbind=0.0.0.0 -rpcport=10340  --datadir=/root/bitcoind-simnet/ -port=12345 -deprecatedrpc=generate
     networks:
       vpcbr:
         ipv4_address: 10.7.0.11
@@ -16,7 +16,7 @@ services:
             - "127.0.0.1:19002:10340"
     cap_add:
       - ALL
-    command: bitcoind -regtest -server -addnode=10.7.0.11:12345 -rpcuser=rpc -rpcpassword=x -rpcallowip=0.0.0.0/0 -rpcbind=0.0.0.0 -rpcport=10340  --datadir=/root/bitcoind-simnet/ -port=12345 -deprecatedrpc=generate
+    command: bitcoind -regtest -server -addnode=10.7.0.11:12345 -txindex=1 -rpcuser=rpc -rpcpassword=x -rpcallowip=0.0.0.0/0 -rpcbind=0.0.0.0 -rpcport=10340  --datadir=/root/bitcoind-simnet/ -port=12345 -deprecatedrpc=generate
     networks:
       vpcbr:
         ipv4_address: 10.7.0.12

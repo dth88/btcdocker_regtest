@@ -5,7 +5,6 @@ import logging
 import atexit
 import os
 
-from flask import jsonify, make_response
 from flask import Flask
 from apscheduler.schedulers.background import BackgroundScheduler
 
